@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot Response</title>
+
+    <!-- Add some basic styling for better presentation -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        #response-container {
+            margin-top: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <h1>Chatbot Response</h1>
+    <div id="response-container">
+        {% if response %}
+            <h2>Cars</h2>
+            <ul>
+                {% for car in response.cars %}
+                    <li>
+                        <strong>{{ car.make }} {{ car.model }} ({{ car.year }})</strong><br>
+                        Color: {{ car.color }}<br>
+                        Mileage: {{ car.mileage }} miles<br>
+                        Fuel Type: {{ car.fuel_type }}<br>
+                        Transmission: {{ car.transmission }}<br>
+                        Price: ${{ car.price }}<br>
+                        Owner: {{ car.owner }}
+                    </li>
+                {% endfor %}
+            </ul>
+
+            <h2>Companies</h2>
+            <ul>
+                {% for company in response.companies %}
+                    <li>
+                        <strong>{{ company.name }}</strong><br>
+                        Location: {{ company.location }}<br>
+                        Cars: {{ company.cars | join(', ') }}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No response available.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
